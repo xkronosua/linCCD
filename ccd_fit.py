@@ -7,7 +7,9 @@ res = []
 n = round(len(data)**0.5)
 m = n+1
 for j,d in enumerate(data):
-	sigma = d[2]
+	sigma = d[2]/2
+	if sigma == np.nan:
+		continue
 	y = d[3:]
 	x = arange(len(y))
 	y0 = np.mean([y[:200],y[-200:]])
@@ -23,8 +25,10 @@ for j,d in enumerate(data):
 	pars['c'].set(y.min())
 	
 	model = mod + bg
-	
-	out  = model.fit(y, pars, x=x)
+	try:
+		out  = model.fit(y, pars, x=x)
+	except:
+		continue
 	print(out.fit_report(min_correl=0.25))
 	ax=subplot(n,m,j+1)
 	ax.tick_params(labelbottom='off')   
@@ -47,6 +51,7 @@ data = []
 for r in res:
 	tmp=[]
 	for k in keys:
+		
 		tmp.append(r[k].value)
 		tmp.append(r[k].stderr)
 	data.append(tmp)
@@ -55,6 +60,8 @@ data = array(data)
 
 df = pd.DataFrame(data,columns=header)
 df.to_csv(fname+"_res.dat",sep='\t')
+print(df)
+print('Radius:%d+-%d'%(df.sigma.mean()*2, df.sigma.std()*2), 'px')
 show(0)
 
 # sigma -- diameter!!!!!!!!!!!!!!!!!!!!!!!!!

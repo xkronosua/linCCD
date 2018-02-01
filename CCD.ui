@@ -105,9 +105,26 @@ color: rgb(255, 0, 0);</string>
       </widget>
      </item>
      <item>
+      <widget class="QSpinBox" name="rec_limit">
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>999999999</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="rec_counter">
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QLineEdit" name="filePath">
        <property name="text">
-        <string>./test.raw</string>
+        <string>./test.dat</string>
        </property>
       </widget>
      </item>
