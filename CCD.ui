@@ -54,6 +54,23 @@
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="CCD_baseline">
+       <property name="text">
+        <string>baseline</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="CCD_fastMode">
+       <property name="text">
+        <string>Fast</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QLabel" name="label">
        <property name="maximumSize">
         <size>

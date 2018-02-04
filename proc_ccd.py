@@ -33,14 +33,14 @@ class CCDReader(QtGui.QWidget):
 		self.ui = Ui_CCD()
 		self.ui.setupUi(self)
 		self.show()
-		self.pw = pg.PlotWidget(name='CCD')  
-		
+		self.pw = pg.PlotWidget(name='CCD')
+
 		self.ui.CCD_plot.addWidget(self.pw)
 
 		self.line = self.pw.plot()
 		self.line.setPen((200,200,100))
 		self.pw.setYRange(0,65536)
-		
+
 
 		self.updateTimer = QtCore.QTimer()
 		self.updateTimer.timeout.connect(self.updatePlot)
@@ -68,18 +68,18 @@ class CCDReader(QtGui.QWidget):
 	def connectClicked(self, state):
 		if state:
 
-			
+
 			self.connect()
-			
+
 
 			trigger = self.ui.CCD_trigger.currentIndex()
 			if trigger == 0:
 				self.ser.write(b'#Text:0%'+bytearray([0x11,0x13]))
 			elif trigger == 1:
 				self.ser.write(b'#Text:1%'+bytearray([0x11,0x13]))
-			
+
 			integration_str = "#CCDInt:";
-			
+
 			integration = self.ui.CCD_exposure.value()
 			if integration<=0 or integration>100:
 					integration = 5
@@ -89,13 +89,13 @@ class CCDReader(QtGui.QWidget):
 			elif integration>=10 and integration<100:
 					str1="0"+str(integration)
 			elif integration==100:
-					str1=str(integration);
+					str1=str(integration)
 			integration_str=integration_str+str1+"%";
 			self.ser.write(integration_str.encode()+bytearray([0x11,0x13]))
 			#r = self.ser.read(1)
 			#n = self.ser.inWaiting()
 			#r += ser.read(n)
-			#print(r) 
+			#print(r)
 
 
 			self.updateTimer.start(50)
@@ -104,14 +104,18 @@ class CCDReader(QtGui.QWidget):
 			self.updateTimer.stop()
 			self.ui.CCD_connect.setStyleSheet('background-color:#222222;')
 			self.disconnect()
-	
+
 	def updatePlot(self):
 		self.updateTimer.stop()
 		t = time.time()
 		data = self.getData()
 		print(time.time()-t,np.std(data-data.min()))
 		self.line.setData(data)
-		self.ui.D4Sigma.setText(str(int(d4sigma(data))))
+		d4s = d4sigma(data)
+		try:
+			self.ui.D4Sigma.setText(str(int(d4s)))
+		except ValueError:
+			self.ui.D4Sigma.setText("nan")
 		if self.ui.CCD_rec.isChecked():
 			self.rec_counter += 1
 			self.ui.rec_counter.setText(str(self.rec_counter))
@@ -124,27 +128,27 @@ class CCDReader(QtGui.QWidget):
 				self.ui.CCD_rec.setChecked(False)
 				self.recClicked(False)
 		self.updateTimer.start(100)
-		
+
 	def connect(self):
 		ports = list(list_ports.grep("0403:6001"))
 		self.port = '/dev/ttyUSB0'
 		for i in ports:
 			if i.description == 'TIT 2RCRP':
 				self.port = i.device
-		self.ser = serial.Serial(self.port,baudrate=115200,timeout=0.1)#, bytesize=serial.EIGHTBITS,parity=serial.PARITY_NONE,stopbits=serial.STOPBITS_ONE,rtscts=False,dsrdtr=False) 
-	
+		self.ser = serial.Serial(self.port,baudrate=115200,timeout=0.1)#, bytesize=serial.EIGHTBITS,parity=serial.PARITY_NONE,stopbits=serial.STOPBITS_ONE,rtscts=False,dsrdtr=False)
+
 	def disconnect(self):
 		self.ser.close()
-	
+
 	def getData(self):
 		ccd_vol_array = np.zeros(3648,dtype=int)
-			
+
 		if self.ser.isOpen():
 			self.ser.write(b'#?data%'+bytearray([0x11,0x13]))
 			#sleep(0.02)
 			try:
 				read_buf = self.ser.read(1)#7296)
-				
+
 				l = 1
 				for i in range(100):
 					sleep(0.01)
@@ -152,8 +156,9 @@ class CCDReader(QtGui.QWidget):
 					read_buf += self.ser.read(n)
 					l+=n
 					if l == 7296: break
+					print(l)
 				print(l)
-				 
+
 			except serial.serialutil.SerialException:
 				print('readError')
 				self.updateTimer.stop()
@@ -169,7 +174,7 @@ class CCDReader(QtGui.QWidget):
 			#sleep(0.05)
 			#read_buf+=self.ser.read(1)
 			#n1=self.ser.inWaiting()
-			 
+
 			#read_buf += self.ser.read(n1)#3200);
 			kk=0;
 			if len(read_buf) == 7296:
@@ -188,7 +193,7 @@ class CCDReader(QtGui.QWidget):
 				#print(n,n1)
 			else:
 					print('noData')
-				
+
 					self.updateTimer.stop()
 					#self.ui.CCD_connect.setChecked(False)
 					self.disconnect()
@@ -207,7 +212,7 @@ if __name__ == "__main__":
 	app.exec_()
 	#SMD_CloseComPort()
 	print(":)")
-	#os.kill(pid, signal.SIGTERM) #or signal.SIGKILL 
+	#os.kill(pid, signal.SIGTERM) #or signal.SIGKILL
 
 	sys.exit(1)
 	'''
@@ -220,6 +225,6 @@ if __name__ == "__main__":
 		plot(r)
 		draw()
 	show(0)
-	
+
 	ser.close()
 	'''
