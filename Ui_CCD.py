@@ -2,91 +2,77 @@
 
 # Form implementation generated from reading ui file 'CCD.ui'
 #
-# Created by: PyQt4 UI code generator 4.12.1
+# Created by: PyQt5 UI code generator 5.11.2
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt4 import QtCore, QtGui
-
-try:
-    _fromUtf8 = QtCore.QString.fromUtf8
-except AttributeError:
-    def _fromUtf8(s):
-        return s
-
-try:
-    _encoding = QtGui.QApplication.UnicodeUTF8
-    def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig, _encoding)
-except AttributeError:
-    def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig)
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_CCD(object):
     def setupUi(self, CCD):
-        CCD.setObjectName(_fromUtf8("CCD"))
-        CCD.resize(569, 300)
-        self.verticalLayout = QtGui.QVBoxLayout(CCD)
-        self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
-        self.horizontalLayout = QtGui.QHBoxLayout()
-        self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
-        self.CCD_connect = QtGui.QPushButton(CCD)
+        CCD.setObjectName("CCD")
+        CCD.resize(591, 300)
+        self.verticalLayout = QtWidgets.QVBoxLayout(CCD)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.CCD_connect = QtWidgets.QPushButton(CCD)
         self.CCD_connect.setCheckable(True)
-        self.CCD_connect.setObjectName(_fromUtf8("CCD_connect"))
+        self.CCD_connect.setObjectName("CCD_connect")
         self.horizontalLayout.addWidget(self.CCD_connect)
-        self.CCD_trigger = QtGui.QComboBox(CCD)
-        self.CCD_trigger.setObjectName(_fromUtf8("CCD_trigger"))
-        self.CCD_trigger.addItem(_fromUtf8(""))
-        self.CCD_trigger.addItem(_fromUtf8(""))
+        self.CCD_trigger = QtWidgets.QComboBox(CCD)
+        self.CCD_trigger.setObjectName("CCD_trigger")
+        self.CCD_trigger.addItem("")
+        self.CCD_trigger.addItem("")
         self.horizontalLayout.addWidget(self.CCD_trigger)
-        self.CCD_exposure = QtGui.QSpinBox(CCD)
+        self.CCD_exposure = QtWidgets.QSpinBox(CCD)
         self.CCD_exposure.setMinimum(1)
         self.CCD_exposure.setMaximum(100)
         self.CCD_exposure.setProperty("value", 1)
-        self.CCD_exposure.setObjectName(_fromUtf8("CCD_exposure"))
+        self.CCD_exposure.setObjectName("CCD_exposure")
         self.horizontalLayout.addWidget(self.CCD_exposure)
-        self.CCD_baseline = QtGui.QPushButton(CCD)
+        self.CCD_baseline = QtWidgets.QPushButton(CCD)
         self.CCD_baseline.setCheckable(True)
-        self.CCD_baseline.setObjectName(_fromUtf8("CCD_baseline"))
+        self.CCD_baseline.setObjectName("CCD_baseline")
         self.horizontalLayout.addWidget(self.CCD_baseline)
-        self.CCD_fastMode = QtGui.QCheckBox(CCD)
-        self.CCD_fastMode.setObjectName(_fromUtf8("CCD_fastMode"))
+        self.CCD_fastMode = QtWidgets.QCheckBox(CCD)
+        self.CCD_fastMode.setObjectName("CCD_fastMode")
         self.horizontalLayout.addWidget(self.CCD_fastMode)
-        self.label = QtGui.QLabel(CCD)
+        self.label = QtWidgets.QLabel(CCD)
         self.label.setMaximumSize(QtCore.QSize(30, 16777215))
-        self.label.setObjectName(_fromUtf8("label"))
+        self.label.setObjectName("label")
         self.horizontalLayout.addWidget(self.label)
-        self.label_2 = QtGui.QLabel(CCD)
-        self.label_2.setObjectName(_fromUtf8("label_2"))
+        self.label_2 = QtWidgets.QLabel(CCD)
+        self.label_2.setObjectName("label_2")
         self.horizontalLayout.addWidget(self.label_2)
-        self.D4Sigma = QtGui.QLabel(CCD)
-        self.D4Sigma.setStyleSheet(_fromUtf8("font: 75 18pt \"Noto Sans\";\n"
-"color: rgb(255, 0, 0);"))
-        self.D4Sigma.setObjectName(_fromUtf8("D4Sigma"))
+        self.D4Sigma = QtWidgets.QLabel(CCD)
+        self.D4Sigma.setStyleSheet("font: 75 18pt \"Noto Sans\";\n"
+"color: rgb(255, 0, 0);")
+        self.D4Sigma.setObjectName("D4Sigma")
         self.horizontalLayout.addWidget(self.D4Sigma)
         self.verticalLayout.addLayout(self.horizontalLayout)
-        self.CCD_plot = QtGui.QVBoxLayout()
-        self.CCD_plot.setObjectName(_fromUtf8("CCD_plot"))
+        self.CCD_plot = QtWidgets.QVBoxLayout()
+        self.CCD_plot.setObjectName("CCD_plot")
         self.verticalLayout.addLayout(self.CCD_plot)
-        self.horizontalLayout_2 = QtGui.QHBoxLayout()
-        self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
-        self.CCD_rec = QtGui.QPushButton(CCD)
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.CCD_rec = QtWidgets.QPushButton(CCD)
         self.CCD_rec.setCheckable(True)
-        self.CCD_rec.setObjectName(_fromUtf8("CCD_rec"))
+        self.CCD_rec.setObjectName("CCD_rec")
         self.horizontalLayout_2.addWidget(self.CCD_rec)
-        self.rec_limit = QtGui.QSpinBox(CCD)
+        self.rec_limit = QtWidgets.QSpinBox(CCD)
         self.rec_limit.setMinimum(1)
         self.rec_limit.setMaximum(999999999)
-        self.rec_limit.setObjectName(_fromUtf8("rec_limit"))
+        self.rec_limit.setObjectName("rec_limit")
         self.horizontalLayout_2.addWidget(self.rec_limit)
-        self.rec_counter = QtGui.QLabel(CCD)
-        self.rec_counter.setObjectName(_fromUtf8("rec_counter"))
+        self.rec_counter = QtWidgets.QLabel(CCD)
+        self.rec_counter.setObjectName("rec_counter")
         self.horizontalLayout_2.addWidget(self.rec_counter)
-        self.filePath = QtGui.QLineEdit(CCD)
-        self.filePath.setObjectName(_fromUtf8("filePath"))
+        self.filePath = QtWidgets.QLineEdit(CCD)
+        self.filePath.setObjectName("filePath")
         self.horizontalLayout_2.addWidget(self.filePath)
-        self.pathSelect = QtGui.QToolButton(CCD)
-        self.pathSelect.setObjectName(_fromUtf8("pathSelect"))
+        self.pathSelect = QtWidgets.QToolButton(CCD)
+        self.pathSelect.setObjectName("pathSelect")
         self.horizontalLayout_2.addWidget(self.pathSelect)
         self.verticalLayout.addLayout(self.horizontalLayout_2)
 
@@ -94,18 +80,19 @@ class Ui_CCD(object):
         QtCore.QMetaObject.connectSlotsByName(CCD)
 
     def retranslateUi(self, CCD):
-        CCD.setWindowTitle(_translate("CCD", "Form", None))
-        self.CCD_connect.setText(_translate("CCD", "Connect", None))
-        self.CCD_trigger.setItemText(0, _translate("CCD", "Int.", None))
-        self.CCD_trigger.setItemText(1, _translate("CCD", "Ext.", None))
-        self.CCD_baseline.setText(_translate("CCD", "baseline", None))
-        self.CCD_fastMode.setText(_translate("CCD", "Fast", None))
-        self.label.setText(_translate("CCD", "%", None))
-        self.label_2.setText(_translate("CCD", "D4Sigma:", None))
-        self.D4Sigma.setToolTip(_translate("CCD", "fast diameter", None))
-        self.D4Sigma.setText(_translate("CCD", "val", None))
-        self.CCD_rec.setText(_translate("CCD", "rec", None))
-        self.rec_counter.setText(_translate("CCD", "0", None))
-        self.filePath.setText(_translate("CCD", "./test.dat", None))
-        self.pathSelect.setText(_translate("CCD", "...", None))
+        _translate = QtCore.QCoreApplication.translate
+        CCD.setWindowTitle(_translate("CCD", "Form"))
+        self.CCD_connect.setText(_translate("CCD", "Connect"))
+        self.CCD_trigger.setItemText(0, _translate("CCD", "Int."))
+        self.CCD_trigger.setItemText(1, _translate("CCD", "Ext."))
+        self.CCD_baseline.setText(_translate("CCD", "baseline"))
+        self.CCD_fastMode.setText(_translate("CCD", "Fast"))
+        self.label.setText(_translate("CCD", "%"))
+        self.label_2.setText(_translate("CCD", "D4Sigma:"))
+        self.D4Sigma.setToolTip(_translate("CCD", "fast diameter"))
+        self.D4Sigma.setText(_translate("CCD", "val"))
+        self.CCD_rec.setText(_translate("CCD", "rec"))
+        self.rec_counter.setText(_translate("CCD", "0"))
+        self.filePath.setText(_translate("CCD", "./test.dat"))
+        self.pathSelect.setText(_translate("CCD", "..."))
 

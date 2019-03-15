@@ -5,7 +5,7 @@ from time import sleep
 import time
 from serial.tools import list_ports
 
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore
 import pyqtgraph as pg
 
 from Ui_CCD import Ui_CCD
@@ -75,7 +75,7 @@ class CCDReader(QtGui.QWidget):
 		else:
 			self.ui.CCD_rec.setStyleSheet('background-color:#222222;')
 	def pathSelect(self):
-		fname = QtGui.QFileDialog.getSaveFileName(directory='./')
+		fname = QtGui.QFileDialog.getSaveFileName(directory='./')[0]
 		print(fname)
 		self.ui.filePath.setText(fname)
 

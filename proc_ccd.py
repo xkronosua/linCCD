@@ -5,7 +5,7 @@ from time import sleep
 import time
 from serial.tools import list_ports
 
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore
 import pyqtgraph as pg
 
 from Ui_CCD import Ui_CCD
